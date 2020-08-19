@@ -7,14 +7,23 @@ plugins {
 group = "fr.convergence.proddoc.libs"
 version = "1.0.0-SNAPSHOT"
 
+// je mets ces 2 variables ici car je n'arrive pas à les mettre ailleurs
+// (dans settings.gradle.kts par exemple)
+val myMavenRepoUser = "myMavenRepo"
+val myMavenRepoPassword ="mask"
+
 publishing {
     repositories {
-        maven(url = "https://mymavenrepo.com/repo/ah37AFHxnt3Fln1mwTvi/")
-        credentials {
-                username myMavenRepoUser
-                password myMavenRepoPassword
+        maven {
+            url = uri("https://mymavenrepo.com/repo/ah37AFHxnt3Fln1mwTvi/")
+            credentials {
+                username = myMavenRepoUser
+                password = myMavenRepoPassword
             }
+        }
+        mavenLocal()
     }
+
     publications {
         create<MavenPublication>("MaskModel") {
             from(components["java"])
