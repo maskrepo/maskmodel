@@ -9,9 +9,8 @@ version = "1.0.0-SNAPSHOT"
 
 publishing {
     repositories {
-        maven {
-            url https://mymavenrepo.com/repo/ah37AFHxnt3Fln1mwTvi/
-        }
+        mavenLocal()
+        maven(url = "https://mymavenrepo.com/repo/ah37AFHxnt3Fln1mwTvi/")
     }
     publications {
         create<MavenPublication>("MaskModel") {
@@ -21,9 +20,7 @@ publishing {
 }
 
 repositories {
-    maven {
-        url https://mymavenrepo.com/repo/OYRB63ZK3HSrWJfc2RIB/
-    }
+    maven(url = "https://mymavenrepo.com/repo/OYRB63ZK3HSrWJfc2RIB/")
     mavenLocal()
     mavenCentral()
 }
