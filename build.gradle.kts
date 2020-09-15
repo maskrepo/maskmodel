@@ -1,11 +1,15 @@
+
+
 plugins {
-    kotlin("jvm") version "1.3.61"
+    kotlin("jvm") version "1.4.10"
     id ("org.jetbrains.kotlin.plugin.allopen") version "1.3.72"
+    kotlin("plugin.serialization") version "1.4.10"
     `maven-publish`
+    id ("jacoco")
 }
 
 group = "fr.convergence.proddoc.libs"
-version = "1.0.0-SNAPSHOT"
+version = "1.1.0-SNAPSHOT"
 
 // je mets ces 2 variables ici car je n'arrive pas à les mettre ailleurs
 // (dans settings.gradle.kts par exemple)
@@ -39,6 +43,12 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC")
+    implementation("org.apache.kafka:kafka-clients:2.6.0")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
+    testImplementation("org.assertj:assertj-core:3.12.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.4.2")
 }
 
 configure<JavaPluginConvention> {
@@ -48,4 +58,8 @@ configure<JavaPluginConvention> {
 allOpen {
     annotation("javax.enterprise.context.ApplicationScoped")
     annotation("javax.ws.rs.Path")
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
