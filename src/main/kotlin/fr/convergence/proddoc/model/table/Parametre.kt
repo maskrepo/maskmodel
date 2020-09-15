@@ -1,6 +1,7 @@
-package fr.convergence.proddoc.libs.model
+package fr.convergence.proddoc.model.table
 
-import java.lang.System.*
+import fr.convergence.proddoc.model.lib.MaskTable
+import java.lang.System.currentTimeMillis
 
 @MaskTable("p_parametre")
 class Parametre {
