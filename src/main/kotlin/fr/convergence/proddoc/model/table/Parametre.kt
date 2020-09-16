@@ -21,6 +21,6 @@ class Parametre {
     var timestamp = currentTimeMillis()
 
     override fun toString(): String {
-        return "fr.convergence.proddoc.libs.model.Parametre(${code_domaine}\\${code_sous_domaine}\\${cle}\\${chrono} => \"$valeur\")"
+        return "fr.convergence.proddoc.model.table.Parametre(${code_domaine}\\${code_sous_domaine}\\${cle}\\${chrono} => \"$valeur\")"
     }
 }
