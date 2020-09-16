@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "fr.convergence.proddoc.libs"
-version = "1.1.1-SNAPSHOT"
+version = "1.1.2-SNAPSHOT"
 
 // je mets ces 2 variables ici car je n'arrive pas à les mettre ailleurs
 // (dans settings.gradle.kts par exemple)
