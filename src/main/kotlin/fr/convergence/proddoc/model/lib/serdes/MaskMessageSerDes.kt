@@ -1,6 +1,7 @@
-package fr.convergence.proddoc.model.lib
+package fr.convergence.proddoc.model.lib.serdes
 
 
+import fr.convergence.proddoc.model.lib.obj.MaskMessage
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -17,7 +18,7 @@ class MaskMessageSerDes : Deserializer<MaskMessage>, Serializer<MaskMessage> {
 
     override fun deserialize(topic: String?, data: ByteArray?): MaskMessage {
         requireNotNull(data) { " la chaine de caractères donnée pour la deserialisation est null" }
-        require(data.size > 0) { " la chaine de caractères donnée pour la deserialisation est vide" }
+        require(data.size > 0) { " la chaine de caractères donnée pour la déserialisation est vide" }
 
         val donnees = String(data)
         LOG.debug("Données recues : $donnees")

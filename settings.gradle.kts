@@ -1,1 +1,1 @@
-rootProject.name = "MaskModel"
+rootProject.name = "mask-model"
