@@ -1,6 +1,7 @@
 package fr.convergence.proddoc.model.metier
 
 import kotlinx.serialization.Serializable
+import org.apache.kafka.common.protocol.types.Field
 
 @Serializable
 class KbisDemande(
@@ -11,15 +12,15 @@ class KbisDemande(
     /**
      * Apostille sur 3 caractère de la forme OUI/NON
      */
-    val apostille :String,
+    val avecApostille :Boolean,
     /***
      * Sceau sur 3 caractère de la forme OUI/NON
      */
-    val sceau :String,
+    val avecSceau :Boolean,
     /**
      * Signature sur 3 caractère de la forme OUI/NON
      */
-    val signature :String
+    val avecSignature :Boolean
 )
 
 @Serializable
