@@ -1,20 +1,22 @@
 
-
 plugins {
     kotlin("jvm") version "1.4.10"
-    id ("org.jetbrains.kotlin.plugin.allopen") version "1.3.72"
     kotlin("plugin.serialization") version "1.4.10"
     `maven-publish`
     id ("jacoco")
 }
 
-group = "fr.convergence.proddoc.libs"
-version = "1.1.0-SNAPSHOT"
+group = "fr.convergence.proddoc.lib"
+version = "1.0.0-SNAPSHOT"
 
-// je mets ces 2 variables ici car je n'arrive pas à les mettre ailleurs
-// (dans settings.gradle.kts par exemple)
 val myMavenRepoUser = "myMavenRepo"
 val myMavenRepoPassword ="mask"
+
+repositories {
+    maven(url = "https://mymavenrepo.com/repo/OYRB63ZK3HSrWJfc2RIB/")
+    mavenLocal()
+    mavenCentral()
+}
 
 publishing {
     repositories {
@@ -29,22 +31,18 @@ publishing {
     }
 
     publications {
-        create<MavenPublication>("MaskModel") {
+        create<MavenPublication>("mask-model") {
             from(components["java"])
         }
     }
 }
 
-repositories {
-    maven(url = "https://mymavenrepo.com/repo/OYRB63ZK3HSrWJfc2RIB/")
-    mavenLocal()
-    mavenCentral()
-}
-
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC")
     implementation("org.apache.kafka:kafka-clients:2.6.0")
+    implementation("org.reflections:reflections:0.9.12")
+    implementation("io.debezium:debezium-core:1.1.2.Final")
+    implementation("io.quarkus:quarkus-vertx:1.5.2.Final")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
     testImplementation("org.assertj:assertj-core:3.12.2")
@@ -52,12 +50,7 @@ dependencies {
 }
 
 configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-}
-
-allOpen {
-    annotation("javax.enterprise.context.ApplicationScoped")
-    annotation("javax.ws.rs.Path")
+    sourceCompatibility = JavaVersion.VERSION_11
 }
 
 tasks.test {

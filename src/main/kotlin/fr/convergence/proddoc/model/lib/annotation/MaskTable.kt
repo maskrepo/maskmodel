@@ -1,4 +1,4 @@
-package fr.convergence.proddoc.model.lib
+package fr.convergence.proddoc.model.lib.annotation
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.CLASS)

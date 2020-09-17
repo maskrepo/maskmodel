@@ -1,6 +1,6 @@
 package fr.convergence.proddoc.model.table
 
-import fr.convergence.proddoc.model.lib.MaskTable
+import fr.convergence.proddoc.model.lib.annotation.MaskTable
 import java.lang.System.currentTimeMillis
 
 @MaskTable("p_parametre")
@@ -21,6 +21,6 @@ class Parametre {
     var timestamp = currentTimeMillis()
 
     override fun toString(): String {
-        return "fr.convergence.proddoc.libs.model.Parametre(${code_domaine}\\${code_sous_domaine}\\${cle}\\${chrono} => \"$valeur\")"
+        return "Parametre(${code_domaine}\\${code_sous_domaine}\\${cle}\\${chrono} => \"$valeur\")"
     }
 }

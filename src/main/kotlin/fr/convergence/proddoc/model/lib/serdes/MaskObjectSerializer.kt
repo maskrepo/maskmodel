@@ -1,6 +1,5 @@
-package fr.convergence.proddoc.model.lib
+package fr.convergence.proddoc.model.lib.serdes
 
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializer
 import kotlinx.serialization.descriptors.PrimitiveKind
@@ -12,11 +11,13 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 
-@ExperimentalSerializationApi
 @Serializer(forClass = LocalDateTime::class)
 object LocalDateTimeSerializer : KSerializer<LocalDateTime> {
     override val descriptor: SerialDescriptor =
-        PrimitiveSerialDescriptor("fr.convergence.proddoc.model.lib.LocalDateTimeSerializer", PrimitiveKind.STRING)
+        PrimitiveSerialDescriptor(
+            "fr.convergence.proddoc.model.lib.serdes.LocalDateTimeSerializer",
+            PrimitiveKind.STRING
+        )
 
     override fun serialize(encoder: Encoder, value: LocalDateTime) {
         encoder.encodeString(value.format(DateTimeFormatter.ISO_DATE_TIME))
