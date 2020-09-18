@@ -97,7 +97,7 @@ class MaskMessage(
 
             return MaskMessage(
                 maskEntete,
-                null, MaskReponse(false, ex.message, ex.stackTraceToString())
+                null, MaskReponse(false, ex.message, ex.message)
             )
         }
     }
