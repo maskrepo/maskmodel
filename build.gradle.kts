@@ -13,8 +13,14 @@ val myMavenRepoUser = "myMavenRepo"
 val myMavenRepoPassword ="mask"
 
 repositories {
-    maven(url = "https://mymavenrepo.com/repo/OYRB63ZK3HSrWJfc2RIB/")
     mavenLocal()
+    maven {
+        url = uri("https://mymavenrepo.com/repo/OYRB63ZK3HSrWJfc2RIB/")
+        credentials {
+            username = myMavenRepoUser
+            password = myMavenRepoPassword
+        }
+    }
     mavenCentral()
 }
 
