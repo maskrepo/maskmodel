@@ -26,10 +26,6 @@ class KbisDemande(
 @Serializable
 class KbisRetour(
         /**
-         * Etat du retour sous la forme OK/KO
-         */
-        val etatRetour :String,
-        /**
          * message détaillant le retour : URL par exemple
          */
         val messageRetour :String
