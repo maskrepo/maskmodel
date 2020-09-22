@@ -19,15 +19,23 @@ class MaskEntete(
     val dateHeureDemande: LocalDateTime,
     val idEmetteur: String,
     val idGreffe: String,
-    val typeDemande: String,
-)
+    val typeDemande: String
+) {
+    override fun toString(): String {
+        return "MaskEntete(idUnique='$idUnique', idLot=$idLot, dateHeureDemande=$dateHeureDemande, idEmetteur='$idEmetteur', idGreffe='$idGreffe', typeDemande='$typeDemande')"
+    }
+}
 
 @Serializable
 class MaskReponse(
     val estReponseOk: Boolean,
     val messageErreur: String? = null,
     val stackTrace: String? = null
-)
+) {
+    override fun toString(): String {
+        return "MaskReponse(estReponseOk=$estReponseOk, messageErreur=$messageErreur, stackTrace=$stackTrace)"
+    }
+}
 
 
 @Serializable
@@ -42,6 +50,7 @@ class MaskMessage(
 
     fun isQuestion() = reponse == null
     fun isReponse() = !isQuestion()
+
 
     companion object MaskMessageBuilder {
         inline fun <reified T> question(
@@ -102,4 +111,7 @@ class MaskMessage(
         }
     }
 
+    override fun toString(): String {
+        return "MaskMessage(entete=$entete, objetMetier=$objetMetier, reponse=$reponse)"
+    }
 }
