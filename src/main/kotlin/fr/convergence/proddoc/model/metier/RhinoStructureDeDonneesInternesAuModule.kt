@@ -1,11 +1,22 @@
 package fr.convergence.proddoc.model.metier
 
+import fr.convergence.proddoc.model.lib.serdes.LocalDateTimeSerializer
+import kotlinx.serialization.Required
 import kotlinx.serialization.Serializable
+import java.time.LocalDateTime
 
 @Serializable
 data class MaskLot (
+    @Required
+    val idUniqueDeLaDemandeALOrigineDuLot: String,
+    @Required
     val idLot : String,
-    val dateDeReceptionDuLot: String,
+    val idEmetteur: String?,
+    @Required
+    val idGreffe: String,
+    val typeDemande: String?,
+    @Serializable(with = LocalDateTimeSerializer::class)
+    val dateDeReceptionDuLot: LocalDateTime,
     val codeUtilisateur: String,
     val produits : MutableList<MaskEvenement>?,
     val actions : MutableList<MaskAction>?,
@@ -40,4 +51,10 @@ data class MaskAction (
     val idEvenementDuquelDependCetteAction : String, // On doit le retrouver dans la liste des MaskActions de MaskLot
     val libelleAction : String,
     var actionEstElleRealisee : Boolean = false
+)
+
+data class ClefAccesAuxLots(
+    val idEmetteur: String,
+    val idGreffe: String,
+    val idLot : String
 )
