@@ -2,6 +2,7 @@ package fr.convergence.proddoc.model.lib.obj
 
 
 import fr.convergence.proddoc.model.lib.serdes.LocalDateTimeSerializer
+import kotlinx.serialization.Required
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -13,11 +14,13 @@ import java.util.*
 
 @Serializable
 class MaskEntete(
+    @Required
     val idUnique: String,
     val idLot: String? = null,
     @Serializable(with = LocalDateTimeSerializer::class)
     val dateHeureDemande: LocalDateTime,
     val idEmetteur: String,
+    @Required
     val idGreffe: String,
     val typeDemande: String
 ) {
@@ -40,6 +43,7 @@ class MaskReponse(
 
 @Serializable
 class MaskMessage(
+    @Required
     val entete: MaskEntete,
     val objetMetier: JsonElement?,
     val reponse: MaskReponse?
