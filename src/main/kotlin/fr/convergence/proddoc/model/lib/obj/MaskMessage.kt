@@ -63,7 +63,7 @@ class MaskMessage(
         ): MaskMessage {
 
             val maskEntete = MaskEntete(
-                UUID.randomUUID().toString(),
+                maskMessageQuestion.entete.idUnique, // TODO voir avec REnaud  : je pense qu'il faut répondre avec le même id que le message question
                 maskMessageQuestion.entete.idLot,
                 LocalDateTime.now(),
                 maskMessageQuestion.entete.idEmetteur,

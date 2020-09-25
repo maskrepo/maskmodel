@@ -1,5 +1,6 @@
 package fr.convergence.proddoc.model.metier
 
+import fr.convergence.proddoc.model.lib.obj.MaskMessage
 import fr.convergence.proddoc.model.lib.serdes.LocalDateTimeSerializer
 import kotlinx.serialization.Required
 import kotlinx.serialization.Serializable
@@ -31,7 +32,7 @@ data class MaskProduit(
 
 @Serializable
 data class MaskEvenement (
-    val idEvenement : String?,
+    val idEvenement : String,
     val codeProduit : String, // RCS_KBIS,etc,...,ainsi que LANCEMENT_INTERPRETATION
     val mapObjetMetier : Map<String,String>?, //   {"REGISTRE": 75302}
     val listeTypesLignesGerees : List<String>?, //
@@ -54,10 +55,10 @@ data class MaskEvenement (
 
 @Serializable
 data class MaskAction (
-    val idAction : String,
+    val maskMessage: MaskMessage,
     val idEvenementDuquelDependCetteAction : String, // On doit le retrouver dans la liste des MaskActions de MaskLot
-    val libelleAction : String,
-    var actionEstElleRealisee : Boolean = false
+    val infosTopicSurLequelOnPosteLeMessage : String,
+    var actionEtat : ActionEtat // Enum
 )
 
 data class ClefAccesAuxLots(
@@ -65,3 +66,10 @@ data class ClefAccesAuxLots(
     val idGreffe: String,
     val idLot : String
 )
+
+
+enum class ActionEtat{
+    ACTION_NON_REALISEE,
+    ACTION_REALISEE_AVEC_SUCCES,
+    ACTION_REALISEE_EN_ECHEC
+}
