@@ -1,7 +1,6 @@
 package fr.convergence.proddoc.model.metier
 
 import kotlinx.serialization.Serializable
-import org.apache.kafka.common.protocol.types.Field
 
 @Serializable
 class KbisDemande(
