@@ -23,7 +23,7 @@ class StockageFichier(
         /**
          * eventuel chemin complet sur le file system
          */
-        val fichierSileSystemURL :String?
+        val fichierFileSystemURL :String?
 )
 
 @Serializable
