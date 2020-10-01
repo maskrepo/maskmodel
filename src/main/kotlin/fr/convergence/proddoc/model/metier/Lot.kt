@@ -6,6 +6,7 @@ import java.time.LocalDateTime
 
 @Serializable
 data class Lot(
+    // identifiant positionne par myGreffe
     val identifiant: String,
     @Serializable(with = LocalDateTimeSerializer::class)
     val dateDemande: LocalDateTime,

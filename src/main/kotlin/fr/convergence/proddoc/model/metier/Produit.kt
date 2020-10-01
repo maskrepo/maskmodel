@@ -13,7 +13,7 @@ data class Produit(
 @Serializable
 data class Evenement (
     val idLot : String,
-    val codeProduit : String, // RCS_KBIS,etc,...,ainsi que LANCEMENT_INTERPRETATION
+    val codeProduit : String, // RCS_KBIS,etc,...
     val mapObjetMetier : Map<String,String>?, //   {"REGISTRE": 75302}
     val listeTypesLignesGerees : List<String>?, //
     val listeIndicateur : List<String>?, //["VISUKBIS"]

@@ -12,6 +12,7 @@ data class MaskLot (
     val idUniqueDeLaDemandeALOrigineDuLot: String,
     @Required
     val idLot : String,
+    @Required
     val idEmetteur: String?,
     @Required
     val idGreffe: String,
