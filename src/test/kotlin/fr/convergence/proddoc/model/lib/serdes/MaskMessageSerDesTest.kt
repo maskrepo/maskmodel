@@ -4,7 +4,6 @@ import fr.convergence.proddoc.model.lib.obj.MaskEntete
 import fr.convergence.proddoc.model.lib.obj.MaskMessage
 import io.vertx.core.logging.Logger
 import io.vertx.core.logging.LoggerFactory
-import jdk.nashorn.internal.ir.annotations.Ignore
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
