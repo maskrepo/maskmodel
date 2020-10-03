@@ -1,6 +1,7 @@
 package fr.convergence.proddoc.model.lib.obj
 
 import fr.convergence.proddoc.model.lib.serdes.LocalDateTimeSerializer
+import kotlinx.serialization.Required
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -12,26 +13,37 @@ import java.util.*
 
 @Serializable
 class MaskEntete(
+    @Required
     val idUnique: String,
     val idLot: String? = null,
     @Serializable(with = LocalDateTimeSerializer::class)
     val dateHeureDemande: LocalDateTime,
     val idEmetteur: String,
     val idReference: String,
+    @Required
     val idGreffe: String,
-    val typeDemande: String,
-)
+    val typeDemande: String
+) {
+    override fun toString(): String {
+        return "MaskEntete(idUnique='$idUnique', idLot=$idLot, dateHeureDemande=$dateHeureDemande, idEmetteur='$idEmetteur', idGreffe='$idGreffe', typeDemande='$typeDemande')"
+    }
+}
 
 @Serializable
 class MaskReponse(
     val estReponseOk: Boolean,
     val messageErreur: String? = null,
     val stackTrace: String? = null
-)
+) {
+    override fun toString(): String {
+        return "MaskReponse(estReponseOk=$estReponseOk, messageErreur=$messageErreur, stackTrace=$stackTrace)"
+    }
+}
 
 
 @Serializable
 class MaskMessage(
+    @Required
     val entete: MaskEntete,
     val objetMetier: JsonElement?,
     val reponse: MaskReponse?
@@ -42,6 +54,7 @@ class MaskMessage(
 
     fun isQuestion() = reponse == null
     fun isReponse() = !isQuestion()
+
 
     companion object MaskMessageBuilder {
 
@@ -131,4 +144,7 @@ class MaskMessage(
         }
     }
 
+    override fun toString(): String {
+        return "MaskMessage(entete=$entete, objetMetier=$objetMetier, reponse=$reponse)"
+    }
 }
