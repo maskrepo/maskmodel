@@ -35,11 +35,9 @@ class MaskMessageSerDes : Deserializer<MaskMessage>, Serializer<MaskMessage> {
         return donnees.toByteArray()
     }
 
-    override fun close() {
-        LOG.debug("close")
-    }
+    override fun close() {}
 
     override fun configure(configs: MutableMap<String, *>?, isKey: Boolean) {
-        LOG.debug("configure")
+        LOG.debug("Configure : $configs")
     }
 }
