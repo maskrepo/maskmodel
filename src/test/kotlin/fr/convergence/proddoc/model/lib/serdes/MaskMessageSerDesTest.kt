@@ -4,6 +4,7 @@ import fr.convergence.proddoc.model.lib.obj.MaskEntete
 import fr.convergence.proddoc.model.lib.obj.MaskMessage
 import io.vertx.core.logging.Logger
 import io.vertx.core.logging.LoggerFactory
+import jdk.nashorn.internal.ir.annotations.Ignore
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
@@ -47,22 +48,24 @@ internal class MaskMessageSerDesTest {
         }
     }
 
+
     @Test
     internal fun shouldDeserialize() {
         val message =
-            "{\"entete\":{\"idUnique\":\"94d96412-7813-46e5-9205-8a1549119f3a\",\"idLot\":null,\"dateHeureDemande\":\"2020-09-15T17:33:41.837\",\"idEmetteur\":\"emetteur\",\"idGreffe\":\"greffe\",\"typeDemande\":\"demande de kbis\"},\"objetMetier\":{\"numeroGestion\":\"2012B00012\"},\"reponse\":null}"
+            "{\"entete\":{\"idUnique\":\"94d96412-7813-46e5-9205-8a1549119f3a\",\"idLot\":null,\"dateHeureDemande\":\"2020-09-15T17:33:41.837\",\"idEmetteur\":\"emetteur\",\"idReference\":\"reference\",\"idGreffe\":\"greffe\",\"typeDemande\":\"demande de kbis\"},\"objetMetier\":{\"numeroGestion\":\"2012B00012\"},\"reponse\":null}"
         val deserializedObject = maskMessageSerDes.deserialize("topic", message.toByteArray())
         Assertions.assertNotNull(deserializedObject)
         Assertions.assertEquals("2012B00012", deserializedObject.recupererObjetMetier<KbisDemandeTest>().numeroGestion)
         Assertions.assertEquals("94d96412-7813-46e5-9205-8a1549119f3a", deserializedObject.entete.idUnique)
+        Assertions.assertEquals("reference", deserializedObject.entete.idReference)
     }
 
     @Test
     internal fun shouldSerialize() {
-        var maskEntete = MaskEntete("", "", LocalDateTime.now(), "", "", "")
+        var maskEntete = MaskEntete("", "", LocalDateTime.now(), "", "","", "")
         var maskMessageQuestionOrigine = MaskMessage(maskEntete, Json.parseToJsonElement("{}"), null)
         val maskMessage =
-            MaskMessage.question(KbisDemandeTest("2012B00017", LocalDateTime.now()), maskMessageQuestionOrigine)
+            MaskMessage.question(KbisDemandeTest("2012B00017", LocalDateTime.now()), maskMessageQuestionOrigine, "")
 
         val serializedObject = maskMessageSerDes.serialize("topic", maskMessage)
 

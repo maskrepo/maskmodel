@@ -1,6 +1,5 @@
 package fr.convergence.proddoc.model.lib.obj
 
-
 import fr.convergence.proddoc.model.lib.serdes.LocalDateTimeSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
@@ -18,6 +17,7 @@ class MaskEntete(
     @Serializable(with = LocalDateTimeSerializer::class)
     val dateHeureDemande: LocalDateTime,
     val idEmetteur: String,
+    val idReference: String,
     val idGreffe: String,
     val typeDemande: String,
 )
@@ -44,9 +44,33 @@ class MaskMessage(
     fun isReponse() = !isQuestion()
 
     companion object MaskMessageBuilder {
+
         inline fun <reified T> question(
             payload: T,
-            maskMessageQuestion: MaskMessage
+            idLot: String,
+            idEmetteur: String,
+            idReference: String,
+            idGreffe: String,
+            typeDemande: String
+        ): MaskMessage {
+
+            val maskEntete = MaskEntete(
+                UUID.randomUUID().toString(),
+                idLot,
+                LocalDateTime.now(),
+                idEmetteur,
+                idReference,
+                idGreffe,
+                typeDemande
+            )
+
+            return MaskMessage(maskEntete, Json.parseToJsonElement(Json.encodeToString(payload)), null)
+        }
+
+        inline fun <reified T> question(
+            payload: T,
+            maskMessageQuestion: MaskMessage,
+            idReference: String
         ): MaskMessage {
 
             val maskEntete = MaskEntete(
@@ -54,6 +78,7 @@ class MaskMessage(
                 maskMessageQuestion.entete.idLot,
                 LocalDateTime.now(),
                 maskMessageQuestion.entete.idEmetteur,
+                idReference,
                 maskMessageQuestion.entete.idGreffe,
                 maskMessageQuestion.entete.typeDemande
             )
@@ -64,13 +89,15 @@ class MaskMessage(
 
         inline fun <reified T> reponseOk(
             payload: T,
-            maskMessageQuestion: MaskMessage
+            maskMessageQuestion: MaskMessage,
+            idReference: String
         ): MaskMessage {
             val maskEntete = MaskEntete(
                 UUID.randomUUID().toString(),
                 maskMessageQuestion.entete.idLot,
                 LocalDateTime.now(),
                 maskMessageQuestion.entete.idEmetteur,
+                idReference,
                 maskMessageQuestion.entete.idGreffe,
                 maskMessageQuestion.entete.typeDemande
             )
@@ -84,13 +111,15 @@ class MaskMessage(
 
         inline fun <reified T> reponseKo(
             ex: Exception,
-            maskMessageQuestion: MaskMessage
+            maskMessageQuestion: MaskMessage,
+            idReference: String
         ): MaskMessage {
             val maskEntete = MaskEntete(
                 UUID.randomUUID().toString(),
                 maskMessageQuestion.entete.idLot,
                 LocalDateTime.now(),
                 maskMessageQuestion.entete.idEmetteur,
+                idReference,
                 maskMessageQuestion.entete.idGreffe,
                 maskMessageQuestion.entete.typeDemande
             )

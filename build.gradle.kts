@@ -1,4 +1,3 @@
-
 plugins {
     kotlin("jvm") version "1.4.10"
     kotlin("plugin.serialization") version "1.4.10"
@@ -7,7 +6,7 @@ plugins {
 }
 
 group = "fr.convergence.proddoc.lib"
-version = "1.0.1-SNAPSHOT"
+version = "1.0.2-SNAPSHOT"
 
 val myMavenRepoUser = "myMavenRepo"
 val myMavenRepoPassword ="mask"
@@ -49,9 +48,11 @@ dependencies {
     implementation("org.reflections:reflections:0.9.12")
     implementation("io.debezium:debezium-core:1.1.2.Final")
     implementation("io.quarkus:quarkus-vertx:1.5.2.Final")
+    implementation("org.jboss.resteasy:jaxrs-api:3.0.12.Final")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
     testImplementation("org.assertj:assertj-core:3.12.2")
+
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.4.2")
 }
 
