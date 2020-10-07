@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "fr.convergence.proddoc.lib"
-version = "1.0.2-SNAPSHOT"
+version = "1.0.3-SNAPSHOT"
 
 val myMavenRepoUser = "myMavenRepo"
 val myMavenRepoPassword ="mask"
@@ -44,11 +44,11 @@ publishing {
 
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC")
+
     implementation("org.apache.kafka:kafka-clients:2.6.0")
     implementation("org.reflections:reflections:0.9.12")
     implementation("io.debezium:debezium-core:1.1.2.Final")
-    implementation("io.quarkus:quarkus-vertx:1.5.2.Final")
-    implementation("org.jboss.resteasy:jaxrs-api:3.0.12.Final")
+    implementation("io.quarkus:quarkus-resteasy:1.8.0.Final")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
     testImplementation("org.assertj:assertj-core:3.12.2")

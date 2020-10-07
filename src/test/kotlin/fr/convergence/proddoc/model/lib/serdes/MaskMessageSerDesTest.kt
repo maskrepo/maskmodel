@@ -2,14 +2,13 @@ package fr.convergence.proddoc.model.lib.serdes
 
 import fr.convergence.proddoc.model.lib.obj.MaskEntete
 import fr.convergence.proddoc.model.lib.obj.MaskMessage
-import io.vertx.core.logging.Logger
-import io.vertx.core.logging.LoggerFactory
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.slf4j.LoggerFactory
 import java.time.LocalDateTime
 
 internal class MaskMessageSerDesTest {
@@ -17,7 +16,7 @@ internal class MaskMessageSerDesTest {
     private lateinit var maskMessageSerDes: MaskMessageSerDes
 
     companion object {
-        private val LOG: Logger = LoggerFactory.getLogger(MaskMessageSerDesTest::class.java)
+        private val LOG = LoggerFactory.getLogger(MaskMessageSerDesTest::class.java)
     }
 
     @BeforeEach

@@ -8,12 +8,13 @@ import kotlinx.serialization.json.Json
 import org.apache.kafka.common.serialization.Deserializer
 import org.apache.kafka.common.serialization.Serializer
 import org.slf4j.LoggerFactory
+import org.slf4j.LoggerFactory.*
 
 
 class MaskMessageSerDes : Deserializer<MaskMessage>, Serializer<MaskMessage> {
 
     companion object {
-        private val LOG = LoggerFactory.getLogger(MaskMessageSerDes::class.java)
+        private val LOG = getLogger(MaskMessageSerDes::class.java)
     }
 
     override fun deserialize(topic: String?, data: ByteArray?): MaskMessage {

@@ -7,10 +7,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.databind.node.ObjectNode
 import fr.convergence.proddoc.model.lib.obj.MaskMessage
-import io.vertx.core.logging.Logger
-import io.vertx.core.logging.LoggerFactory
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import org.slf4j.LoggerFactory.getLogger
 import javax.ws.rs.ext.ContextResolver
 import javax.ws.rs.ext.Provider
 
@@ -34,7 +33,7 @@ class MaskMessageJacksonSerDes : ContextResolver<ObjectMapper> {
 class MaskMessageJsonDeserializer : JsonDeserializer<MaskMessage>() {
 
     companion object {
-        private val LOG: Logger = LoggerFactory.getLogger(MaskMessageJsonDeserializer::class.java)
+        private val LOG = getLogger(MaskMessageJsonDeserializer::class.java)
     }
 
     override fun deserialize(p: JsonParser?, ctxt: DeserializationContext?): MaskMessage {

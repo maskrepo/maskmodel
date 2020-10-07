@@ -4,17 +4,16 @@ package fr.convergence.proddoc.model.lib.serdes
 import fr.convergence.proddoc.model.lib.annotation.MaskTable
 import fr.convergence.proddoc.model.lib.obj.PayloadDebezium
 import io.debezium.serde.DebeziumSerdes
-import io.vertx.core.logging.Logger
-import io.vertx.core.logging.LoggerFactory.getLogger
 import org.apache.kafka.common.serialization.Deserializer
 import org.reflections.Reflections
+import org.slf4j.LoggerFactory.getLogger
 import java.util.*
 
 
 class MaskTableDeserialiseur : Deserializer<Any?> {
 
     companion object {
-        private val LOG: Logger = getLogger(MaskTableDeserialiseur::class.java)
+        private val LOG = getLogger(MaskTableDeserialiseur::class.java)
 
         private val deserializationPayloadProperties: HashMap<String, Any> =
             hashMapOf("unknown.properties.ignored" to "true")
