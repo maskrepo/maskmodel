@@ -1,8 +1,10 @@
 package fr.convergence.proddoc.model.metier
 
+import io.quarkus.runtime.annotations.RegisterForReflection
 import kotlinx.serialization.Serializable
 
 @Serializable
+@RegisterForReflection
 class KbisDemande(
     /**
      * Numero de gestion sur 10 carcatères de la forme 2010B00012
@@ -23,6 +25,7 @@ class KbisDemande(
 )
 
 @Serializable
+@RegisterForReflection
 class KbisRetour(
         /**
          * message détaillant le retour : URL par exemple

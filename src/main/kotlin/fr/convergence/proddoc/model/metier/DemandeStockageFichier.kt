@@ -1,6 +1,7 @@
 package fr.convergence.proddoc.model.metier
 
 import fr.convergence.proddoc.model.lib.obj.MaskMessage
+import io.quarkus.runtime.annotations.RegisterForReflection
 import kotlinx.serialization.Serializable
 
 /**
@@ -8,6 +9,7 @@ import kotlinx.serialization.Serializable
  * Message transmis sur le topic "STOCKER_FICHIER_DEMANDE"
  */
 @Serializable
+@RegisterForReflection
 class DemandeStockageFichier(
     /**
      * URL que doit appeler Stringer pour récupérer le stream sur le fichier à stocker

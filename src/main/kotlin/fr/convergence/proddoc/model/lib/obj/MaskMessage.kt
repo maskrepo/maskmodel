@@ -1,6 +1,7 @@
 package fr.convergence.proddoc.model.lib.obj
 
 import fr.convergence.proddoc.model.lib.serdes.LocalDateTimeSerializer
+import io.quarkus.runtime.annotations.RegisterForReflection
 import kotlinx.serialization.Required
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
@@ -11,6 +12,7 @@ import java.time.LocalDateTime
 import java.util.*
 
 
+@RegisterForReflection
 @Serializable
 class MaskEntete(
     @Required
@@ -29,6 +31,7 @@ class MaskEntete(
     }
 }
 
+@RegisterForReflection
 @Serializable
 class MaskReponse(
     val estReponseOk: Boolean,
@@ -40,7 +43,7 @@ class MaskReponse(
     }
 }
 
-
+@RegisterForReflection
 @Serializable
 class MaskMessage(
     @Required
@@ -57,6 +60,22 @@ class MaskMessage(
 
 
     companion object MaskMessageBuilder {
+
+
+        fun deserialisationKo(ex: Exception): MaskMessage {
+
+            val maskEntete = MaskEntete(
+                UUID.randomUUID().toString(),
+                "idLot indécodable",
+                LocalDateTime.now(),
+                "idEmetteur indécodable",
+                "idReference indécodable",
+                "idGreffe indécodable",
+                "typeDemande indécodable"
+            )
+
+            return MaskMessage(maskEntete, Json.parseToJsonElement(Json.encodeToString(ex.message)), null)
+        }
 
         inline fun <reified T> question(
             payload: T,

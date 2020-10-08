@@ -1,9 +1,11 @@
 package fr.convergence.proddoc.model.metier
 
+import io.quarkus.runtime.annotations.RegisterForReflection
 import kotlinx.serialization.Serializable
 
 
 @Serializable
+@RegisterForReflection
 data class Produit(
     val typeEvenement : String, // PRODUIT ou evenement type GO_INTERPRETATION ( pour gerer la chaine d execution )
     val evenement: Evenement
@@ -11,6 +13,7 @@ data class Produit(
 
 
 @Serializable
+@RegisterForReflection
 data class Evenement (
     val idLot : String,
     val codeProduit : String, // RCS_KBIS,etc,...

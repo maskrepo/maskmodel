@@ -7,8 +7,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.apache.kafka.common.serialization.Deserializer
 import org.apache.kafka.common.serialization.Serializer
-import org.slf4j.LoggerFactory
-import org.slf4j.LoggerFactory.*
+import org.slf4j.LoggerFactory.getLogger
 
 
 class MaskMessageSerDes : Deserializer<MaskMessage>, Serializer<MaskMessage> {
@@ -24,7 +23,12 @@ class MaskMessageSerDes : Deserializer<MaskMessage>, Serializer<MaskMessage> {
         val donnees = String(data)
         LOG.debug("Données recues : $donnees")
 
-        return Json.decodeFromString(donnees)
+        return try {
+            Json.decodeFromString(donnees)
+        } catch (ex: Exception) {
+            LOG.error("Impossible de décoder les données recues ${ex.message} : $donnees", ex)
+            MaskMessage.deserialisationKo(ex)
+        }
     }
 
     override fun serialize(topic: String?, data: MaskMessage?): ByteArray {
@@ -36,7 +40,9 @@ class MaskMessageSerDes : Deserializer<MaskMessage>, Serializer<MaskMessage> {
         return donnees.toByteArray()
     }
 
-    override fun close() {}
+    override fun close() {
+        // rien à faire
+    }
 
     override fun configure(configs: MutableMap<String, *>?, isKey: Boolean) {
         LOG.debug("Configure : $configs")

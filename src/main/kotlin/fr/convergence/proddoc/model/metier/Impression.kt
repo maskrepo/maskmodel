@@ -1,11 +1,13 @@
 package fr.convergence.proddoc.model.metier
 
+import io.quarkus.runtime.annotations.RegisterForReflection
 import kotlinx.serialization.Serializable
 
 /**
  * pour faire bonne impression !
  */
 @Serializable
+@RegisterForReflection
 class DemandeImpression (
     /**
      * L'URL absolue pour accèder au fichier via un stream
@@ -18,6 +20,7 @@ class DemandeImpression (
 )
 
 @Serializable
+@RegisterForReflection
 class RetourImpression (
         /**
          * message détaillant le retour
@@ -26,6 +29,7 @@ class RetourImpression (
 )
 
 @Serializable
+@RegisterForReflection
 class RetourImpressionMyGreffe (
         /**
          * L'URL absolue du fichier qui devrait être imprimé

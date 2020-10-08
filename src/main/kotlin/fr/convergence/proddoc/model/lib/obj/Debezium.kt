@@ -1,10 +1,14 @@
 package fr.convergence.proddoc.model.lib.obj
 
+import io.quarkus.runtime.annotations.RegisterForReflection
+
+@RegisterForReflection
 class PayloadDebezium {
     var after: Any? = null
     var source: SourceDebezium? = null
 }
 
+@RegisterForReflection
 class SourceDebezium {
     var version: String? = null
     var connector: String? = null
