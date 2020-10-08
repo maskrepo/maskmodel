@@ -1,12 +1,10 @@
 package fr.convergence.proddoc.model.metier
 
 import fr.convergence.proddoc.model.lib.serdes.LocalDateTimeSerializer
-import io.quarkus.runtime.annotations.RegisterForReflection
 import kotlinx.serialization.Serializable
 import java.time.LocalDateTime
 
 @Serializable
-@RegisterForReflection
 data class Lot(
     // identifiant positionne par myGreffe
     val identifiant: String,

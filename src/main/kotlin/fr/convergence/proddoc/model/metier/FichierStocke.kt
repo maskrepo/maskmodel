@@ -1,10 +1,8 @@
 package fr.convergence.proddoc.model.metier
 
-import io.quarkus.runtime.annotations.RegisterForReflection
 import kotlinx.serialization.Serializable
 
 @Serializable
-@RegisterForReflection
 class FichierStocke(
     /**
      * Un identifiant connu de Stinger seul (pour référence)

@@ -1,7 +1,6 @@
 package fr.convergence.proddoc.model.lib.obj
 
 import fr.convergence.proddoc.model.lib.serdes.LocalDateTimeSerializer
-import io.quarkus.runtime.annotations.RegisterForReflection
 import kotlinx.serialization.Required
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
@@ -12,7 +11,6 @@ import java.time.LocalDateTime
 import java.util.*
 
 
-@RegisterForReflection
 @Serializable
 class MaskEntete(
     @Required
@@ -31,7 +29,6 @@ class MaskEntete(
     }
 }
 
-@RegisterForReflection
 @Serializable
 class MaskReponse(
     val estReponseOk: Boolean,
@@ -43,7 +40,6 @@ class MaskReponse(
     }
 }
 
-@RegisterForReflection
 @Serializable
 class MaskMessage(
     @Required
