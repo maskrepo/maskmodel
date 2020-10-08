@@ -6,33 +6,43 @@ import kotlinx.serialization.Serializable
  * pour faire bonne impression !
  */
 @Serializable
-class DemandeImpression (
-    /**
-     * L'URL absolue pour accèder au fichier via un stream
-     */
-    val urlFichierAImprimer: String,
-    /**
-     * L'URL de callback pour confirmer l'état de l'impression
-     */
-    val urlCallback : String?
-)
-
-@Serializable
-class RetourImpression (
+class DemandeImpression(
         /**
-         * message détaillant le retour
+         * lien entre serveur d'impression et myGreffe
          */
-        val messageRetour :String
+        val IDsortieDocument: String,
+        /**
+         * L'URL absolue pour accéder au fichier via un stream
+         */
+        val urlFichierAImprimer: String,
+
+        val rectoVerso: Boolean,
+        /**
+         * nom de l'imprimante de sortie à utiliser
+         */
+        val nomImprimante: String,
+
+        val nomBacEntree: String,
+        val nbExemplaires: Int,
 )
 
 @Serializable
-class RetourImpressionMyGreffe (
+class RetourImpression(
+        /**
+         * message en français détaillant le retour
+         */
+        val messageRetour: String
+)
+
+@Serializable
+class RetourImpressionMyGreffe(
+        val IDsortieDocument: String,
         /**
          * L'URL absolue du fichier qui devrait être imprimé
          */
         val urlFichierAImprimer: String,
         /**
-         * message détaillant le retour
+         * Etat du retour True = OK et False = KO
          */
-        val messageRetour :String
+        val etatRetour: Boolean
 )
