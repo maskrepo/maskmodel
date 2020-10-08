@@ -39,11 +39,11 @@ internal class MaskMessageSerDesTest {
     }
 
     @Test
-    internal fun shouldNotDeserializeIfNotCompliant() {
+    internal fun shouldNotDeserializeIfNotCompliantBuGenerateExceptionMaskMessage() {
         val message = "{faux: \"hjhjk\"}"
-        Assertions.assertThrows(SerializationException::class.java) {
-            maskMessageSerDes.deserialize("topic", message.toByteArray())
-        }
+
+        val deserialize = maskMessageSerDes.deserialize("topic", message.toByteArray())
+        Assertions.assertTrue(deserialize.recupererObjetMetier<String>().contains("Unexpected JSON token"))
     }
 
 

@@ -40,7 +40,6 @@ class MaskReponse(
     }
 }
 
-
 @Serializable
 class MaskMessage(
     @Required
@@ -57,6 +56,22 @@ class MaskMessage(
 
 
     companion object MaskMessageBuilder {
+
+
+        fun deserialisationKo(ex: Exception): MaskMessage {
+
+            val maskEntete = MaskEntete(
+                UUID.randomUUID().toString(),
+                "idLot indécodable",
+                LocalDateTime.now(),
+                "idEmetteur indécodable",
+                "idReference indécodable",
+                "idGreffe indécodable",
+                "typeDemande indécodable"
+            )
+
+            return MaskMessage(maskEntete, Json.parseToJsonElement(Json.encodeToString(ex.message)), null)
+        }
 
         inline fun <reified T> question(
             payload: T,
