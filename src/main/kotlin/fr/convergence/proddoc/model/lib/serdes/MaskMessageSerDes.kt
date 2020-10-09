@@ -24,7 +24,9 @@ class MaskMessageSerDes : Deserializer<MaskMessage>, Serializer<MaskMessage> {
         LOG.debug("Données recues : $donnees")
 
         return try {
-            Json.decodeFromString(donnees)
+            val decodeFromString = Json.decodeFromString<MaskMessage>(donnees)
+            LOG.debug("Données recues décodées : $decodeFromString")
+            decodeFromString
         } catch (ex: Exception) {
             LOG.error("Impossible de décoder les données recues ${ex.message} : $donnees", ex)
             MaskMessage.deserialisationKo(ex)

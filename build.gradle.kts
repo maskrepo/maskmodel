@@ -1,3 +1,5 @@
+val quarkusVersion: String = "1.8.0.Final"
+
 plugins {
     kotlin("jvm") version "1.4.10"
     kotlin("plugin.serialization") version "1.4.10"
@@ -6,7 +8,7 @@ plugins {
 }
 
 group = "fr.convergence.proddoc.lib"
-version = "1.1.2-SNAPSHOT"
+version = "1.1.3-SNAPSHOT"
 
 val myMavenRepoUser = "myMavenRepo"
 val myMavenRepoPassword = "mask"
@@ -48,7 +50,8 @@ dependencies {
     implementation("org.apache.kafka:kafka-clients:2.6.0")
     implementation("org.reflections:reflections:0.9.12")
     implementation("io.debezium:debezium-core:1.1.2.Final")
-    implementation("io.quarkus:quarkus-resteasy:1.8.0.Final")
+    implementation("io.quarkus:quarkus-resteasy:$quarkusVersion")
+    implementation("io.quarkus:quarkus-resteasy-jackson:$quarkusVersion")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
     testImplementation("org.assertj:assertj-core:3.12.2")

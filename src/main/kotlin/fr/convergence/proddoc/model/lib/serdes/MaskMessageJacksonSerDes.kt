@@ -10,23 +10,31 @@ import fr.convergence.proddoc.model.lib.obj.MaskMessage
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.slf4j.LoggerFactory.getLogger
+import javax.ws.rs.Produces
+import javax.ws.rs.core.MediaType
 import javax.ws.rs.ext.ContextResolver
 import javax.ws.rs.ext.Provider
 
 @Provider
+@Produces(MediaType.APPLICATION_JSON)
 class MaskMessageJacksonSerDes : ContextResolver<ObjectMapper> {
 
-    private val objectMapper: ObjectMapper
-
-    override fun getContext(objectType: Class<*>?): ObjectMapper {
-        return objectMapper
+    companion object {
+        private val LOG = getLogger(MaskMessageJacksonSerDes::class.java)
     }
+
+    private val objectMapper: ObjectMapper
 
     init {
         objectMapper = ObjectMapper()
         val module = SimpleModule("MaskMessageModuleJsonDeserializer")
         module.addDeserializer(MaskMessage::class.java, MaskMessageJsonDeserializer())
         objectMapper.registerModule(module)
+        LOG.info("Enregistrement du deserializer de MaskMessage en json pour resteasy")
+    }
+
+    override fun getContext(objectType: Class<*>?): ObjectMapper {
+        return objectMapper
     }
 }
 
