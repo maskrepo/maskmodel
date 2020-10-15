@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "fr.convergence.proddoc.lib"
-version = "1.1.3-SNAPSHOT"
+version = "1.1.4-SNAPSHOT"
 
 val myMavenRepoUser = "myMavenRepo"
 val myMavenRepoPassword = "mask"
