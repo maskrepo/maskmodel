@@ -14,21 +14,21 @@ data class Produit(
 data class Evenement(
     val idLot: String,
     val codeProduit: String, // RCS_KBIS,etc,...
-    val mapObjetMetier: Map<String, String>?, //   {"REGISTRE": 75302}
-    val listeTypesLignesGerees: List<String>?, //
-    val listeIndicateur: List<String>?, //["VISUKBIS"]
-    val nombreExemplaires: Int?,
-    val pourApostille: Boolean?,
-    val produit: String?,
-    val sortieLot: String?,
-    val reference: String?,
-    val listeIndicateurEntite: List<String>?,
-    val sortieEdition: String?,
-    val mapSortieDestinataire: Map<String, String>?,
-    val description: String?,
-    val descriptionKbis: String?,
-    val typeDocumentGed: String?,
-    val dateTarif: String?,
-    val mapDestinataires: Map<String, String>?,
-    val listSortieDestinataire: List<String>?
+    val mapObjetMetier: Map<String, String>? = null, //   {"REGISTRE": 75302}
+    val listeTypesLignesGerees: List<String>? = null, //
+    val listeIndicateur: List<String>? = null, //["VISUKBIS"]
+    val nombreExemplaires: Int? = null,
+    val pourApostille: Boolean? = null,
+    val produit: String? = null,
+    val sortieLot: String? = null,
+    val reference: String? = null,
+    val listeIndicateurEntite: List<String>? = null,
+    val sortieEdition: String? = null,
+    val mapSortieDestinataire: Map<String, String>? = null,
+    val description: String? = null,
+    val descriptionKbis: String? = null,
+    val typeDocumentGed: String? = null,
+    val dateTarif: String? = null,
+    val mapDestinataires: Map<String, String>? = null,
+    val listSortieDestinataire: List<String>? = null
 )

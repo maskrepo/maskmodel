@@ -5,6 +5,7 @@ import kotlinx.serialization.Required
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonConfiguration
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.decodeFromJsonElement
 import java.time.LocalDateTime
@@ -48,7 +49,7 @@ class MaskMessage(
     val reponse: MaskReponse?
 ) {
     inline fun <reified T> recupererObjetMetier(): T {
-        return Json.decodeFromJsonElement(objetMetier!!)
+        return Json { ignoreUnknownKeys = true } .decodeFromJsonElement(objetMetier!!)
     }
 
     fun isQuestion() = reponse == null

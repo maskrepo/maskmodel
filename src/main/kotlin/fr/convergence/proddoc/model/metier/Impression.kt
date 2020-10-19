@@ -10,7 +10,7 @@ class DemandeImpression(
         /**
          * lien entre serveur d'impression et myGreffe
          */
-        val IDsortieDocument: String,
+        val iDsortieDocument: Long?,
         /**
          * L'URL absolue pour accéder au fichier via un stream
          */
@@ -36,7 +36,7 @@ class RetourImpression(
 
 @Serializable
 class RetourImpressionMyGreffe(
-        val IDsortieDocument: String,
+        val IDsortieDocument: Long,
         /**
          * L'URL absolue du fichier qui devrait être imprimé
          */

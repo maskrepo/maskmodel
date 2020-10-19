@@ -38,10 +38,10 @@ object LocalDateSerializer : KSerializer<LocalDate> {
         )
 
     override fun serialize(encoder: Encoder, value: LocalDate) {
-        encoder.encodeString(value.format(DateTimeFormatter.ISO_DATE_TIME))
+        encoder.encodeString(value.format(DateTimeFormatter.ISO_DATE))
     }
 
     override fun deserialize(decoder: Decoder): LocalDate {
-        return LocalDate.parse(decoder.decodeString(), DateTimeFormatter.ISO_DATE_TIME)
+        return LocalDate.parse(decoder.decodeString(), DateTimeFormatter.ISO_DATE)
     }
 }
